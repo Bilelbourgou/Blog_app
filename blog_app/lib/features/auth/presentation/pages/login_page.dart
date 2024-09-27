@@ -1,9 +1,11 @@
 import 'package:blog_app/core/theme/app_pallete.dart';
+import 'package:blog_app/features/auth/presentation/pages/signup_page.dart';
 import 'package:blog_app/features/auth/presentation/widgets/auth_field.dart';
 import 'package:blog_app/features/auth/presentation/widgets/auth_gradient_button.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context) => const SignupPage());
   const LoginPage({super.key});
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -50,21 +52,29 @@ class _LoginPageState extends State<LoginPage> {
                 isObscureText: true,
               ),
               const SizedBox(height: 20),
-              const AuthGradientButton(buttonText: 'Sign In',),
+              const AuthGradientButton(
+                buttonText: 'Sign In',
+              ),
               const SizedBox(height: 20),
-              RichText(
-                text: const TextSpan(
-                    text: "don't have an account? ",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                    children: [
-                      TextSpan(
-                        text: "Sign Up",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: AppPallete.gradient2),
-                      )
-                    ]),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, LoginPage.route());
+                },
+                child: RichText(
+                  text: const TextSpan(
+                      text: "don't have an account? ",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                      children: [
+                        TextSpan(
+                          text: "Sign Up",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: AppPallete.gradient2),
+                        )
+                      ]),
+                ),
               )
             ],
           ),
